@@ -1,0 +1,493 @@
+$date
+	Wed Apr 15 11:27:51 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module tb_top $end
+$var reg 1 ! clk $end
+$var reg 1 " reset $end
+$scope module uut $end
+$var wire 1 ! clk $end
+$var wire 32 # pc_next [31:0] $end
+$var wire 1 " reset $end
+$var wire 1 $ zero $end
+$var wire 32 % write_data [31:0] $end
+$var wire 1 & regwrite $end
+$var wire 32 ' read_data2 [31:0] $end
+$var wire 32 ( read_data1 [31:0] $end
+$var wire 32 ) pc_plus4_out [31:0] $end
+$var wire 32 * pc_current [31:0] $end
+$var wire 1 + memwrite $end
+$var wire 1 , memtoreg $end
+$var wire 1 - memread $end
+$var wire 32 . instruction [31:0] $end
+$var wire 32 / imm_out [31:0] $end
+$var wire 1 0 branch $end
+$var wire 1 1 alusrc $end
+$var wire 2 2 aluop [1:0] $end
+$var wire 32 3 alu_result [31:0] $end
+$var wire 32 4 alu_in2 [31:0] $end
+$var wire 4 5 alu_control_out [3:0] $end
+$scope module ALU $end
+$var wire 4 6 control_in [3:0] $end
+$var wire 32 7 B [31:0] $end
+$var wire 32 8 A [31:0] $end
+$var reg 32 9 alu_result [31:0] $end
+$var reg 1 $ zero $end
+$upscope $end
+$scope module ALUCTRL $end
+$var wire 3 : func3 [2:0] $end
+$var wire 1 ; func7 $end
+$var wire 2 < aluop [1:0] $end
+$var reg 4 = control_out [3:0] $end
+$upscope $end
+$scope module ALU_SRC_MUX $end
+$var wire 1 1 sel1 $end
+$var wire 32 > mux1_out [31:0] $end
+$var wire 32 ? b1 [31:0] $end
+$var wire 32 @ a1 [31:0] $end
+$upscope $end
+$scope module CU $end
+$var wire 7 A opcode [6:0] $end
+$var reg 2 B aluop [1:0] $end
+$var reg 1 1 alusrc $end
+$var reg 1 0 branch $end
+$var reg 1 - memread $end
+$var reg 1 , memtoreg $end
+$var reg 1 + memwrite $end
+$var reg 1 & regwrite $end
+$upscope $end
+$scope module IG $end
+$var wire 7 C opcode [6:0] $end
+$var wire 32 D instruction_out [31:0] $end
+$var reg 32 E immediate_out [31:0] $end
+$upscope $end
+$scope module IM $end
+$var wire 32 F read_addr [31:0] $end
+$var reg 32 G instruction_out [31:0] $end
+$var integer 32 H i [31:0] $end
+$upscope $end
+$scope module PC $end
+$var wire 1 ! clk $end
+$var wire 32 I pc_in [31:0] $end
+$var wire 1 " reset $end
+$var reg 32 J pc_out [31:0] $end
+$upscope $end
+$scope module PC4 $end
+$var wire 32 K from_pc [31:0] $end
+$var wire 32 L to_pc [31:0] $end
+$upscope $end
+$scope module RF $end
+$var wire 1 ! clk $end
+$var wire 5 M rd [4:0] $end
+$var wire 32 N read_data1 [31:0] $end
+$var wire 32 O read_data2 [31:0] $end
+$var wire 1 & regwrite $end
+$var wire 1 " reset $end
+$var wire 5 P rs1 [4:0] $end
+$var wire 5 Q rs2 [4:0] $end
+$var wire 32 R write_data [31:0] $end
+$var integer 32 S k [31:0] $end
+$upscope $end
+$scope module WB_MUX $end
+$var wire 32 T a2 [31:0] $end
+$var wire 32 U b2 [31:0] $end
+$var wire 1 , sel2 $end
+$var wire 32 V mux2_out [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1111 V
+b0 U
+b1111 T
+b100000 S
+b1111 R
+b10 Q
+b1 P
+b101 O
+b1010 N
+b11 M
+b100 L
+b0 K
+b0 J
+b100 I
+b1000000 H
+b1000001000000110110011 G
+b0 F
+b0 E
+b1000001000000110110011 D
+b110011 C
+b10 B
+b110011 A
+b101 @
+b0 ?
+b101 >
+b10 =
+b10 <
+0;
+b0 :
+b1111 9
+b1010 8
+b101 7
+b10 6
+b10 5
+b101 4
+b1111 3
+b10 2
+01
+00
+b0 /
+b1000001000000110110011 .
+0-
+0,
+0+
+b0 *
+b100 )
+b1010 (
+b101 '
+1&
+b1111 %
+0$
+b100 #
+1"
+0!
+$end
+#5000
+b101 '
+b101 @
+b101 O
+b1010 (
+b1010 8
+b1010 N
+b100000 S
+1!
+#10000
+0!
+0"
+#15000
+b101 %
+b101 R
+b101 V
+b101 3
+b101 9
+b101 T
+b110 5
+b110 6
+b110 =
+1;
+b100 M
+b1000000001000001000001000110011 .
+b1000000001000001000001000110011 D
+b1000000001000001000001000110011 G
+b1000 #
+b1000 I
+b1000 )
+b1000 L
+b100 *
+b100 F
+b100 J
+b100 K
+1!
+#20000
+0!
+#25000
+b0 %
+b0 R
+b0 V
+1$
+b0 3
+b0 9
+b0 T
+b0 5
+b0 6
+b0 =
+b111 :
+0;
+b101 M
+b1000001111001010110011 .
+b1000001111001010110011 D
+b1000001111001010110011 G
+b1100 #
+b1100 I
+b1100 )
+b1100 L
+b1000 *
+b1000 F
+b1000 J
+b1000 K
+1!
+#30000
+0!
+#35000
+b1111 %
+b1111 R
+b1111 V
+0$
+b1111 3
+b1111 9
+b1111 T
+b1 5
+b1 6
+b1 =
+b110 :
+b110 M
+b1000001110001100110011 .
+b1000001110001100110011 D
+b1000001110001100110011 G
+b10000 #
+b10000 I
+b10000 )
+b10000 L
+b1100 *
+b1100 F
+b1100 J
+b1100 K
+1!
+#40000
+0!
+#45000
+1$
+b0 %
+b0 R
+b0 V
+b10 5
+b10 6
+b10 =
+b0 4
+b0 7
+b0 >
+b0 3
+b0 9
+b0 T
+0&
+b0 2
+b0 <
+b0 B
+b0 :
+b0 C
+b0 M
+b0 '
+b0 @
+b0 O
+b0 Q
+b0 (
+b0 8
+b0 N
+b0 P
+b0 A
+b0 .
+b0 D
+b0 G
+b10100 #
+b10100 I
+b10100 )
+b10100 L
+b10000 *
+b10000 F
+b10000 J
+b10000 K
+1!
+#50000
+0!
+#55000
+b11000 #
+b11000 I
+b11000 )
+b11000 L
+b10100 *
+b10100 F
+b10100 J
+b10100 K
+1!
+#60000
+0!
+#65000
+b11100 #
+b11100 I
+b11100 )
+b11100 L
+b11000 *
+b11000 F
+b11000 J
+b11000 K
+1!
+#70000
+0!
+#75000
+b100000 #
+b100000 I
+b100000 )
+b100000 L
+b11100 *
+b11100 F
+b11100 J
+b11100 K
+1!
+#80000
+0!
+#85000
+b100100 #
+b100100 I
+b100100 )
+b100100 L
+b100000 *
+b100000 F
+b100000 J
+b100000 K
+1!
+#90000
+0!
+#95000
+b101000 #
+b101000 I
+b101000 )
+b101000 L
+b100100 *
+b100100 F
+b100100 J
+b100100 K
+1!
+#100000
+0!
+#105000
+b101100 #
+b101100 I
+b101100 )
+b101100 L
+b101000 *
+b101000 F
+b101000 J
+b101000 K
+1!
+#110000
+0!
+#115000
+b110000 #
+b110000 I
+b110000 )
+b110000 L
+b101100 *
+b101100 F
+b101100 J
+b101100 K
+1!
+#120000
+0!
+#125000
+b110100 #
+b110100 I
+b110100 )
+b110100 L
+b110000 *
+b110000 F
+b110000 J
+b110000 K
+1!
+#130000
+0!
+#135000
+b111000 #
+b111000 I
+b111000 )
+b111000 L
+b110100 *
+b110100 F
+b110100 J
+b110100 K
+1!
+#140000
+0!
+#145000
+b111100 #
+b111100 I
+b111100 )
+b111100 L
+b111000 *
+b111000 F
+b111000 J
+b111000 K
+1!
+#150000
+0!
+#155000
+b1000000 #
+b1000000 I
+b1000000 )
+b1000000 L
+b111100 *
+b111100 F
+b111100 J
+b111100 K
+1!
+#160000
+0!
+#165000
+b1000100 #
+b1000100 I
+b1000100 )
+b1000100 L
+b1000000 *
+b1000000 F
+b1000000 J
+b1000000 K
+1!
+#170000
+0!
+#175000
+b1001000 #
+b1001000 I
+b1001000 )
+b1001000 L
+b1000100 *
+b1000100 F
+b1000100 J
+b1000100 K
+1!
+#180000
+0!
+#185000
+b1001100 #
+b1001100 I
+b1001100 )
+b1001100 L
+b1001000 *
+b1001000 F
+b1001000 J
+b1001000 K
+1!
+#190000
+0!
+#195000
+b1010000 #
+b1010000 I
+b1010000 )
+b1010000 L
+b1001100 *
+b1001100 F
+b1001100 J
+b1001100 K
+1!
+#200000
+0!
+#205000
+b1010100 #
+b1010100 I
+b1010100 )
+b1010100 L
+b1010000 *
+b1010000 F
+b1010000 J
+b1010000 K
+1!
+#210000
+0!
