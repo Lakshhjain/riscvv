@@ -35,7 +35,12 @@ initial begin
     memory[2] = 32'b0000000_00010_00001_111_00101_0110011;
     // or x6, x1, x2
     memory[3] = 32'b0000000_00010_00001_110_00110_0110011;
-    
+    // sll x7, x1, x2  → x7 = x1 << x2[4:0]  = 10 << 5 = 320
+    memory[4] = 32'b0000000_00010_00001_001_00111_0110011;
+    // srl x8, x1, x2  → x8 = x1 >> x2[4:0]  = 10 >> 5 = 0
+    memory[5] = 32'b0000000_00010_00001_101_01000_0110011;
+    // sra x9, x1, x2  → x9 = x1 >>> x2[4:0] = 10 >>> 5 = 0
+    memory[6] = 32'b0100000_00010_00001_101_01001_0110011;
 end
 always @(*) begin
     instruction_out = memory[read_addr[7:2]];
@@ -78,7 +83,8 @@ begin
     case (opcode)
         7'b0000011: immediate_out = {{20{instruction_out[31]}}, instruction_out[31:20]}; 
         7'b0100011: immediate_out = {{20{instruction_out[31]}}, instruction_out[31:25], instruction_out[11:7]};
-        
+        7'b1100011: immediate_out = {{19{instruction_out[31]}}, instruction_out[31], instruction_out[7], instruction_out[30:25], instruction_out[11:8], 1'b0};
+
         default:    immediate_out = 32'b0;
     endcase
 end    
@@ -112,6 +118,9 @@ module alu_unit(A, B, control_in, alu_result, zero);
             4'b0001: alu_result = A | B;
             4'b0010: alu_result = A + B;
             4'b0110: alu_result = A - B;
+            4'b0011: alu_result = A << B[4:0];           // SLL 
+            4'b0100: alu_result = A >> B[4:0];           // SRL 
+            4'b0101: alu_result = $signed(A) >>> B[4:0]; // SRA 
             default: alu_result = 32'b0;
         endcase
         zero = (alu_result == 32'b0); 
@@ -131,7 +140,10 @@ begin
     6'b10_0_000:control_out = 4'b0010;        
     6'b10_1_000:control_out = 4'b0110;        
     6'b10_0_111:control_out = 4'b0000;        
-    6'b10_0_110:control_out = 4'b0001;  
+    6'b10_0_110:control_out = 4'b0001;
+    6'b10_0_001: control_out = 4'b0011;  // SLL  
+    6'b10_0_101: control_out = 4'b0100;  // SRL  
+    6'b10_1_101: control_out = 4'b0101;  // SRA   
     6'b11_0_000:control_out = 4'b0010;
     default: control_out = 4'b0000; 
     endcase
@@ -179,7 +191,7 @@ begin
         d_mem[k]=32'b00;
     end
 else if (memwrite) begin
-    d_mem[read_addrss]<=write_data;
+    d_mem[read_addrss[7:2]]<=write_data;
     end    
 end
 end
@@ -209,7 +221,8 @@ wire zero;
 wire [3:0] alu_control_out;
 wire [31:0] shifted_imm;        // imm_out << 1  (shift block in diagram)
 wire [31:0] branch_target;      // PC + shifted immediate
-wire and_out;   
+wire and_out;  
+wire [31:0] read_data; 
 // -------------------- MODULE INSTANTIATIONS --------------------
 
 // PC
@@ -225,7 +238,7 @@ pc_plus4 PC4 (
     .from_pc(pc_current),
     .to_pc(pc_plus4_out)
 );
-assign pc_next = pc_plus4_out;
+
 
 // Instruction Memory
 instruction_memory IM (
